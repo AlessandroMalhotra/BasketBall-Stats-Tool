@@ -39,14 +39,11 @@ Here are your choices:
 
 
 def user_input():
-    while True:
-        try:
-            user_attempt = int(input("Enter an option > 1  "))
-            while user_attempt < 1 or user_attempt > 2:
-                user_attempt = int(input("\nInvalid entry outside of the range. \n\nEnter a number between 1 and 2: "))
-            return user_attempt
-        except ValueError:
-            print("Oh no! That's not a valid value. Try again...")
+    user_input = None
+
+    while user_input != "1" and user_input != "2":
+        user_input = input("Enter 1 or 2:  ")
+        print(user_input)
                    
     if user_attempt == 1:
         team_menu()
@@ -181,7 +178,7 @@ if __name__ == '__main__':
     menu()
     user_input()
     team_menu()
-    #panthers_stats(Teams)
-    #bandits_stats(Teams)
-    #warrior_stats(Teams)
+    panthers_stats(Teams)
+    bandits_stats(Teams)
+    warrior_stats(Teams)
     
