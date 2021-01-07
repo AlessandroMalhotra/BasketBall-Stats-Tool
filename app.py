@@ -1,5 +1,7 @@
 from constants import PLAYERS
 
+from collections import OrderedDict
+
 import copy
 
 players_copy = copy.deepcopy(PLAYERS)
@@ -55,26 +57,18 @@ def user_input():
 def team_menu():
     teams = ['Panthers', 'Bandits', 'Warriors']
     
-    for index, team in enumerate(teams, 1):
-        print(f"\n{index}.{team}")
+    choice = True
     
-    while True:
-        try:
-            user_attempt = int(input("\nEnter an option > 1 "))
-            while user_attempt < 0 or user_attempt > 3:
-                user_attempt = int(input("\nInvalid entry outside of the range. \n\nEnter a number between 1 and 3: "))
-            return user_input
-        except ValueError:
-            print("Oh no! That's not a valid value. Try again...")
-                   
-    if user_attempt == 1:
-        panthers_stats()
+    while choice:
+
+        for index, team in enumerate(teams, 1):
+            print(f"\n{index}.{team}")
     
-    elif user_attempt == 2:
-        bandits_stats()
+        choice = input("Enter a option between 1 and 3: ").lower().strip()
     
-    elif user_attempt == 3:
-        warrior_stats()
+        if choice in stats_menu:
+            stats_menu[choice]()
+
 
 def average_height(team):
     height = 0
@@ -109,7 +103,7 @@ def panthers_stats(Teams):
     	guardian = ','.join(players['guardians'])
     	team_guardians.append(guardian)
     print('\n'"Guardians on Team: {}".format(", ".join(team_guardians)))
-    
+    enters = exit()
     
 
 def bandits_stats(Teams):
@@ -139,7 +133,8 @@ def bandits_stats(Teams):
     	guardian = ','.join(players['guardians'])
     	team_guardians.append(guardian)
     print('\n'"Guardians on Team: {}".format(", ".join(team_guardians)))
-        
+    enters = exit()
+
         
 def warrior_stats(Teams):
     total_players = len(Teams[2])
@@ -167,18 +162,27 @@ def warrior_stats(Teams):
     	guardian = ','.join(players['guardians'])
     	team_guardians.append(guardian)
     print('\n'"Guardians on Team: {}".format(", ".join(team_guardians)))
+    enters = exit()
+
+
+def exit():
+    user = None
+    
+    while user != 'e':
+        user = input("\nPress 'e' to continue  ").lower().strip()
+    print(user)  
+        
+    if user == 'e':
+        menu()
     
 
 if __name__ == '__main__':
     clean_data(players_copy)
     experienced_players = [player for player in players_copy if player['experience'] == True]
     inexperienced_players = [player for player in players_copy if player['experience'] == False]
+    stats_menu = OrderedDict([('1', panthers_stats), ('2', bandits_stats), ('3', warrior_stats)])
     
     balance_teams(Teams, experienced_players, inexperienced_players)
     menu()
     user_input()
     team_menu()
-    panthers_stats(Teams)
-    bandits_stats(Teams)
-    warrior_stats(Teams)
-    
