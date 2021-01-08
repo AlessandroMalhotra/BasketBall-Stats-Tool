@@ -47,10 +47,10 @@ def user_input():
         user_input = input("Enter 1 or 2:  ")
         print(user_input)
                    
-    if user_attempt == 1:
+    if user_input == 1:
         team_menu()
     
-    elif user_attempt == 2:
+    elif user_input == 2:
         print("Thank you, have a nice day!")
 
 
