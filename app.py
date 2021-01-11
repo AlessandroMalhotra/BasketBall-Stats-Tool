@@ -74,7 +74,7 @@ def average_height(team):
     average_height = height / len(team)
     return round(average_height)
     
-def panthers_stats(Teams):
+def panthers_stats():
     total_players = len(Teams[0])
     total_experienced = len(Teams[0]) // 2
     total_inexperienced = len(Teams[0]) // 2
@@ -103,7 +103,7 @@ def panthers_stats(Teams):
     enters = exit()
     
 
-def bandits_stats(Teams):
+def bandits_stats():
     total_players = len(Teams[1])
     total_experienced = len(Teams[1]) // 2
     total_inexperienced = len(Teams[1]) // 2
@@ -133,7 +133,7 @@ def bandits_stats(Teams):
     enters = exit()
 
         
-def warrior_stats(Teams):
+def warrior_stats():
     total_players = len(Teams[2])
     total_experienced = len(Teams[2])
     total_inexperienced = len(Teams[2])
