@@ -47,10 +47,10 @@ def user_input():
         user_input = input("Enter 1 or 2:  ")
         print(user_input)
                    
-    if user_input == 1:
+    if user_input == '1':
         team_menu()
     
-    elif user_input == 2:
+    elif user_input == '2':
         print("Thank you, have a nice day!")
 
 
@@ -174,13 +174,13 @@ def exit():
         
     if user == 'e':
         menu()
-    
+
+stats_menu = OrderedDict([('1', panthers_stats), ('2', bandits_stats), ('3', warrior_stats)])   
 
 if __name__ == '__main__':
     clean_data(players_copy)
     experienced_players = [player for player in players_copy if player['experience'] == True]
     inexperienced_players = [player for player in players_copy if player['experience'] == False]
-    stats_menu = OrderedDict([('1', panthers_stats), ('2', bandits_stats), ('3', warrior_stats)])
     
     balance_teams(Teams, experienced_players, inexperienced_players)
     menu()
