@@ -38,18 +38,14 @@ Here are your choices:
 """
     print(welcome)
     user_attempt = user_input()
+    return user_attempt
 
 
 def user_input():
-    while True:
-        user_input = input('Enter 1 or 2:  ')
-                   
-        if user_input == '2':
-            print('Thank you, have a nice day!')
-            break
-    
-        else:
-            team_menu()
+    user_input = None 
+    while user_input != '1' and user_input != '2':
+        user_input = input('Enter 1 or 2:  ')             
+    return user_input
 
 
 def team_menu():
@@ -58,6 +54,7 @@ def team_menu():
     choice = None
     
     while choice != 'q':
+        print('\n Enter q to return back to main menu.')
         for index, team in enumerate(teams, 1):
             print(f"\n{index}.{team}")
         
@@ -163,14 +160,7 @@ def warrior_stats():
 
 
 def exit():
-    user = None
-    
-    while user != 'e':
-        user = input("\nPress 'e' to continue  ").lower().strip()
-    print(user)  
-        
-    if user == 'e':
-        menu()
+    input("\nPress 'ENTER' to continue  ").lower().strip()
  
 
 if __name__ == '__main__':
@@ -180,6 +170,8 @@ if __name__ == '__main__':
     stats_menu = OrderedDict([('1', panthers_stats), ('2', bandits_stats), ('3', warrior_stats)])
     
     balance_teams(Teams, experienced_players, inexperienced_players)
-    menu()
-    user_input()
-    team_menu(stats_menu)
+    choice = menu()
+    while choice != '2':
+        team_menu()
+        choice = menu()
+    print('Goodbye!')
