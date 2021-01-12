@@ -25,6 +25,7 @@ def balance_teams(Teams, experienced, inexperienced):
     Teams[1].extend(experienced[3:6])
     Teams[2].extend(experienced[6:9])
     Teams[2].extend(experienced[6:9])
+
     
 def menu():
     welcome = """
@@ -70,7 +71,8 @@ def average_height(team):
         height += player['height']
     average_height = height / len(team)
     return round(average_height)
-    
+
+
 def panthers_stats():
     total_players = len(Teams[0])
     total_experienced = len(Teams[0]) // 2
