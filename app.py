@@ -4,10 +4,12 @@ from collections import OrderedDict
 
 import copy
 
+# Make a copy of the PLAYERS list.
 players_copy = copy.deepcopy(PLAYERS)
 Teams = [[], [], []]
 
 
+# Clean up the data so the experiene is either 'True' or 'False' and height is solely a integer value.
 def clean_data(players_copy):
     for player in players_copy:
         if player['experience'] == 'YES':
@@ -18,6 +20,7 @@ def clean_data(players_copy):
         player['guardians'] = player['guardians'].split('and')
 
 
+# Balance the players accross three teams with equal amount of experienced and inexperienced.
 def balance_teams(Teams, experienced, inexperienced):
     Teams[0].extend(experienced[:3])
     Teams[0].extend(inexperienced[:3])
@@ -26,7 +29,8 @@ def balance_teams(Teams, experienced, inexperienced):
     Teams[2].extend(experienced[6:9])
     Teams[2].extend(experienced[6:9])
 
-    
+
+# Displays the main menu.
 def menu():
     welcome = """
 BASKETBALL TEAM STATS TOOL
@@ -42,6 +46,7 @@ Here are your choices:
     return user_attempt
 
 
+# Ask user for input of 1 or 2 which will then display either team stats or quit the appication.
 def user_input():
     user_input = None 
     while user_input != '1' and user_input != '2':
@@ -49,6 +54,7 @@ def user_input():
     return user_input
 
 
+# If the user selects 1 it will display menu of the three teams and prompt the user to enter a number between 1-3 to show the stats of a team.
 def team_menu():
     teams = ['Panthers', 'Bandits', 'Warriors']
     
@@ -65,6 +71,7 @@ def team_menu():
             stats_menu[choice]()
 
 
+# This calculates average height of the teams 
 def average_height(team):
     height = 0
     for player in team:
@@ -73,6 +80,7 @@ def average_height(team):
     return round(average_height)
 
 
+# Displays panthers team stats 
 def panthers_stats():
     total_players = len(Teams[0])
     total_experienced = len(Teams[0]) // 2
@@ -102,6 +110,7 @@ def panthers_stats():
     enters = exit()
     
 
+# Displays bandits stats
 def bandits_stats():
     total_players = len(Teams[1])
     total_experienced = len(Teams[1]) // 2
@@ -131,7 +140,8 @@ def bandits_stats():
     print('\n'"Guardians on Team: {}".format(", ".join(team_guardians)))
     enters = exit()
 
-        
+
+# Display warrior stats
 def warrior_stats():
     total_players = len(Teams[2])
     total_experienced = len(Teams[2])
@@ -160,7 +170,7 @@ def warrior_stats():
     print('\n'"Guardians on Team: {}".format(", ".join(team_guardians)))
     enters = exit()
 
-
+# If user selects quit then this will prompt user to press enter and the app will quit
 def exit():
     input("\nPress 'ENTER' to continue  ").lower().strip()
  
